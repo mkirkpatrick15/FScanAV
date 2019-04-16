@@ -5,10 +5,10 @@
 
 GREEN='\e[0;32m' # '\e[1;32m' is too bright.
 RED='\033[0;31m'
-endColor='\e[0m'
+endColor='\e[1;37m'
 
 #Echo the path provided by the user
-echo -e "${GREEN}Scanning file: \e[5;32;47m ${endColor}" "$1"
+echo -e "${GREEN}Scanning file: \e[5;32; ${endColor}" "$1"
 
 printf "\n"
 
@@ -38,3 +38,23 @@ else
 	printf "${GREEN}\tSOPHOS evaded!${endCOlor}"
 fi
 printf "\n"
+
+#________________________________________________________
+
+
+
+# (1) prompt user, and read command line argument
+read -p "Would you like to attempt evasion techniques?(y or n)" answer
+# (2) Read arguments that were given
+while true
+do
+   case $answer in
+      [yY]* )
+         sh ./evade.sh "$1"
+      break;;
+
+      [nN]* ) exit;;
+      * )	echo "enter y or n"; break ;;
+   esac
+done
+
